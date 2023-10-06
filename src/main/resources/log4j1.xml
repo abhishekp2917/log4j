@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration status specifies the logging level of the configuration itself -->
+<Configuration status="INFO">
+    <!-- Define the appenders section -->
+    <Appenders>
+        <!-- Create a Console Appender named "Console" -->
+        <!--
+            This creates a Console Appender named "Console" that directs log messages to the standard output
+            (SYSTEM_OUT).
+        -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- Configure the log message layout using PatternLayout -->
+            <!-- The pattern defines the format of log messages -->
+            <!--
+                This configures the log message layout using a PatternLayout. It specifies the format of log messages,
+                including the timestamp (%d), thread name (%t), log level (%-5level), logger name (%logger{36}),
+                log message (%msg), and a newline (%n).
+            -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <!-- Define the loggers section -->
+    <Loggers>
+        <!-- Define the root logger -->
+        <Root level="info">
+            <!-- Set the log level for the root logger to INFO -->
+            <AppenderRef ref="Console"/>
+            <!-- Associate the "Console" appender with the root logger -->
+        </Root>
+    </Loggers>
+</Configuration>
+        <!-- Log4j2 configuration file ends here -->
