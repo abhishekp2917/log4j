@@ -20,7 +20,6 @@
         </Console>
     </Appenders>
 
-    <!-- Define the loggers section -->
     <Loggers>
         <!-- Define the root logger -->
         <Root level="info">
