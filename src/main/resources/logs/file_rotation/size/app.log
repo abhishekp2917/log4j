@@ -1,0 +1,3 @@
+00:12:40.041 [main] WARN  org.example.Main1 - 1999 This is a WARN level message.
+00:12:40.043 [main] ERROR org.example.Main1 - 1999 This is an ERROR level message.
+00:12:40.043 [main] FATAL org.example.Main1 - 1999 This is a FATAL level message.

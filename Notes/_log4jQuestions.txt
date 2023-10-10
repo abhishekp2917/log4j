@@ -74,3 +74,88 @@ ________________________________________________________________________________
     familiarity with the chosen framework.
 ________________________________________________________________________________________________________________________
 
+*   How to get started with Log4j2 ?
+
+>>  Here's a step-by-step guide on how to get started with Log4j2:
+
+    (1) Add Log4j2 Dependency:
+
+        It's mandatory to add both 'log4j-api' and 'log4j-core' dependencies to your project as 'log4j-api' provides
+        necessary interface and 'log4j-core' provides it implementation
+
+        ```
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                    <version>2.14.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>2.14.1</version>
+                </dependency>
+            </dependencies>
+        ```
+    (2) Create a Log4j2 Configuration File:
+
+        Log4j2 uses XML, JSON, YAML, or properties files for configuration. Create a configuration file (e.g.,
+        log4j2.xml, log4j2.json, log4j2.yaml, or log4j2.properties) in your project's classpath.
+
+        Here's a simple example in XML :
+
+        ```
+            <?xml version="1.0" encoding="UTF-8"?>
+            <Configuration status="WARN">
+                <Appenders>
+                    <Console name="Console" target="SYSTEM_OUT">
+                        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+                    </Console>
+                </Appenders>
+                <Loggers>
+                    <Root level="info">
+                        <AppenderRef ref="Console"/>
+                    </Root>
+                </Loggers>
+            </Configuration>
+        ```
+
+        Here's a simple example of .properties file :
+
+        ```
+            # Define the status level for Log4j 2 internal messages
+            status = WARN
+
+            # Define the appender named "Console"
+            appender.console.type = Console
+            appender.console.name = Console
+            appender.console.target = SYSTEM_OUT
+            appender.console.layout.type = PatternLayout
+            appender.console.layout.pattern = %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+
+            # Root logger configuration
+            rootLogger.level = info
+            rootLogger.appenderRef.console.ref = Console
+        ```
+
+    (3) Configure Logging in Your Java Application:
+
+        In your Java code, import the necessary Log4j2 classes and configure the logger. Here's a basic example:
+
+        ```
+            import org.apache.logging.log4j.LogManager;
+            import org.apache.logging.log4j.Logger;
+
+            public class MyApp {
+                private static final Logger logger = LogManager.getLogger(MyApp.class);
+
+                public static void main(String[] args) {
+                    logger.debug("This is a debug message.");
+                    logger.info("This is an info message.");
+                    logger.warn("This is a warning message.");
+                    logger.error("This is an error message.");
+                }
+            }
+        ```
+________________________________________________________________________________________________________________________
+

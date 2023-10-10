@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <Appenders>
+
+        <!-- The appender for writing log messages to the console in simple text format -->
+        <Console name="ConsolePattern" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- File Appender with JSON layout -->
+        <File name="FileJson" fileName="C:/log4j/src/main/resources/logs/layouts/log.json">
+
+            <!--
+                JsonLayout is used to format log messages as JSON objects
+
+                -   'compact' attribute specifies whether to use compact JSON format.
+                -   'eventEol' attribute appends a newline after each log event.
+            -->
+            <JsonLayout compact="true" eventEol="true"/>
+        </File>
+
+
+        <!-- File Appender with Html layout -->
+        <File name="FileHtml" fileName="C:/log4j/src/main/resources/logs/layouts/log.html" eventEol="true">
+
+            <!--
+                HtmlLayout is used to format log messages in an HTML table
+
+                -   'title' attribute sets the title of the HTML log file
+                -   'eventEol' attribute appends a newline after each log event.
+            -->
+            <HtmlLayout title="Log4j2 HTML Layout Example"/>
+        </File>
+
+        <!-- File Appender with Xml layout -->
+        <File name="FileXml" fileName="C:/log4j/src/main/resources/logs/layouts/log.xml">
+
+            <!--
+                XmlLayout is used to format log messages in an XML structure
+
+                -   'complete' attribute specifies whether to include the XML header.
+                -   'compact' attribute specifies whether to use compact XML format.
+                -   'eventEol' attribute appends a newline after each log event.
+            -->
+            <XmlLayout complete="true" compact="false"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+
+        <!-- The root logger is the top-level logger that logs messages from all packages/classes -->
+        <Root level="debug">
+
+            <AppenderRef ref="ConsolePattern"/>
+            <AppenderRef ref="FileJson"/>
+            <AppenderRef ref="FileHtml"/>
+            <AppenderRef ref="FileXml"/>
+        </Root>
+    </Loggers>
+</Configuration>

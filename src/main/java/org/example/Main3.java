@@ -1,5 +1,5 @@
 /*
-    Code to demonstrate how to create Logger object and use it to log messages
+    Code to demonstrate how to log messages in various layouts
 */
 
 package org.example;
@@ -8,17 +8,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 
-public class Main1 {
+public class Main3 {
 
     public static void main(String[] args) {
-        // basic config file path
-        String configFilePath = "C:\\log4j\\src\\main\\resources\\log4j2-basic.xml";
-        // Configure Log4j2 with the specified configuration file
-        // this way logger will be configured based on configuration provided in the specified config file
-        // Here we are explicitly defining which config file to use
+
+        String configFilePath = "C:\\log4j\\src\\main\\resources\\log4j2-layouts.xml";
+
         Configurator.initialize("BasicConfiguration", configFilePath);
+
         // Create a logger for your class
-        Logger logger =  LogManager.getLogger(Main1.class);
+        Logger logger =  LogManager.getLogger(Main3.class);
         // Log messages at various log levels
         logger.trace("This is a TRACE level message.");
         logger.debug("This is a DEBUG level message.");

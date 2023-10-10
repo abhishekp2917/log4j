@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <Appenders>
+
+        <!--
+            Adding Rolling file based Appender having policy based on time in which new log file will roll over
+            every 1 second
+        -->
+        <RollingFile name="FileWithTimeBasedRotationPolicy"
+              fileName="C:/log4j/src/main/resources/logs/file_rotation/time/app.log"
+              filePattern="C:/log4j/src/main/resources/logs/file_rotation/time/app-%d{MM-dd-yy-HH-mm-ss}.log">
+
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <!--
+            Adding Rolling file based Appender having policy based on size in which new log file will roll over
+            once previous one will reach it size threshold of 1KB
+        -->
+        <RollingFile name="FileWithSizeBasedRotationPolicy"
+                     fileName="C:/log4j/src/main/resources/logs/file_rotation/size/app.log"
+                     filePattern="C:/log4j/src/main/resources/logs/file_rotation/size/app-%d{MM-dd-yy-HH-mm-ss}.log">
+
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <SizeBasedTriggeringPolicy size="1KB" />
+        </RollingFile>
+
+        <!--
+            Adding Rolling file based Appender having both time and size based policy in which new log file will roll over
+            once previous one will reach it size threshold of 1KB or 1 second has passed since the previous file has
+            rolled out
+
+            we can set multiple policies for a single Rolling file Appender
+        -->
+        <RollingFile name="FileWithTimeAndSizeBasedRotationPolicy"
+                     fileName="C:/log4j/src/main/resources/logs/file_rotation/time_and_size/app.log"
+                     filePattern="C:/log4j/src/main/resources/logs/file_rotation/time_and_size/app-%d{MM-dd-yy-HH-mm-ss}.log">
+
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="1KB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+
+        <!-- The root logger is the top-level logger that logs messages from all packages/classes -->
+        <Root level="debug">
+
+            <!--
+                AppenderRef associates all the appenders with this logger
+
+                since we are associating all the three appenders with the root logger, on logging message all these three
+                appender will be triggered i.e. three different file will be created very first time we log a message
+
+            -->
+            <AppenderRef ref="FileWithTimeBasedRotationPolicy"/>
+            <AppenderRef ref="FileWithSizeBasedRotationPolicy"/>
+            <AppenderRef ref="FileWithTimeAndSizeBasedRotationPolicy"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,13 @@
+00:12:34.990 [main] ERROR org.example.Main1 - 158 This is an ERROR level message.
+00:12:34.995 [main] FATAL org.example.Main1 - 158 This is a FATAL level message.
+00:12:34.996 [main] DEBUG org.example.Main1 - 159 This is a DEBUG level message.
+00:12:34.996 [main] INFO  org.example.Main1 - 159 This is an INFO level message.
+00:12:34.996 [main] WARN  org.example.Main1 - 159 This is a WARN level message.
+00:12:34.996 [main] ERROR org.example.Main1 - 159 This is an ERROR level message.
+00:12:34.996 [main] FATAL org.example.Main1 - 159 This is a FATAL level message.
+00:12:34.996 [main] DEBUG org.example.Main1 - 160 This is a DEBUG level message.
+00:12:34.996 [main] INFO  org.example.Main1 - 160 This is an INFO level message.
+00:12:34.996 [main] WARN  org.example.Main1 - 160 This is a WARN level message.
+00:12:34.996 [main] ERROR org.example.Main1 - 160 This is an ERROR level message.
+00:12:34.996 [main] FATAL org.example.Main1 - 160 This is a FATAL level message.
+00:12:34.996 [main] DEBUG org.example.Main1 - 161 This is a DEBUG level message.

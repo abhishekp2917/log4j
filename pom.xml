@@ -16,17 +16,29 @@
 
     <dependencies>
 
-        <!-- log4j -->
+        <!-- log4j API -->
+        <!--
+            The API (log4j-api) is the interface that your code uses to log messages, set log levels, and configure
+            loggers. Your application code interacts with the API to perform logging operations. Without the API, your
+            code would have no way to log messages.
+        -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+
+
+        <!-- log4j Core -->
         <!--
             The Log4j Core library is a popular logging framework for Java applications. By adding this dependency
             to your project, you enable your application to use Log4j for logging purposes.
+            It provides the concrete implementations of loggers, appenders, and layouts given by API 'log4j-api'
         -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.20.0</version>
         </dependency>
-
     </dependencies>
-
 </project>

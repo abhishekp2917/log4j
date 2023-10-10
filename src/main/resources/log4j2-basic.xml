@@ -8,7 +8,7 @@
             This creates a Console Appender named "Console" that directs log messages to the standard output
             (SYSTEM_OUT).
         -->
-        <Console name="Console" target="SYSTEM_OUT">
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
             <!-- Configure the log message layout using PatternLayout -->
             <!-- The pattern defines the format of log messages -->
             <!--
@@ -21,11 +21,18 @@
     </Appenders>
 
     <Loggers>
-        <!-- Define the root logger -->
+        <!--
+            Define the root logger
+            Set the log level for the root logger to INFO
+        -->
         <Root level="info">
-            <!-- Set the log level for the root logger to INFO -->
-            <AppenderRef ref="Console"/>
-            <!-- Associate the "Console" appender with the root logger -->
+
+            <!--
+                Associate the "ConsoleAppender" appender with the root logger
+                To add the Appenders defined above, we have to associate Appenders (provide ref to Appenders) here
+                otherwise that Appender will not work
+            -->
+            <AppenderRef ref="ConsoleAppender"/>
         </Root>
     </Loggers>
 </Configuration>
