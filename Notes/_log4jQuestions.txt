@@ -74,6 +74,198 @@ ________________________________________________________________________________
     familiarity with the chosen framework.
 ________________________________________________________________________________________________________________________
 
+*   Explain log4j log level and use case with a scenario ?
+
+>>  A log level is a categorization or severity level used in logging to indicate the importance or severity of a log
+    message. Log levels help developers and system administrators manage and filter log messages, making it easier to
+    understand the behavior of an application or system and troubleshoot issues. Different log levels correspond to
+    different levels of severity or importance in the logged events.
+
+    The common log levels, ordered from the least severe to the most severe, include:
+
+    (1) TRACE:
+
+        The lowest and most detailed log level. Used for very fine-grained and detailed debugging information.
+
+        Use Case : This is the lowest and most detailed log level. It is typically used for messages that provide the
+        most granular information about what is happening within an application. Trace-level logs are useful for
+        debugging and diagnosing issues.
+
+        Scenario : If there is a method and we want to trace the input parameters value and value of other variables
+        inside it, we can use TRACE
+
+        ```
+            public static double calculateAverage(double[] values) {
+                double sum = 0.0;
+                for (double value : values) {
+                    sum += value;
+                    logger.trace("Value : {}", value);
+                }
+                // tracing variable 'sum' value which will be calculated after adding 'values' array elements
+                logger.trace("Summation : {}", sum);
+                double avg = sum / values.length;
+                // tracing variable 'avg' value once avg has been calculated
+                logger.trace("Average : {}", avg);
+                return avg;
+            }
+        ```
+
+    (2) DEBUG:
+
+        Used for debugging messages. Typically includes information about the flow of the program and variable values.
+        These messages are useful during development and debugging but are usually not present in production code.
+
+        Use Case :  DEBUG is a step above TRACE and provides a more general overview of the application's behavior,
+        which makes it useful for development and tracking the flow of control.
+
+        Scenario : If there is a method which calculates Average of array which calls another method to calculate sum of
+        array, we can use DEBUG to get the flow of method calling and it's behaviour.
+
+        ```
+            public static double calculateAverage(double[] values) {
+                // logging to debug the flow of this method by marking the entry and exit point
+                logger.debug("Entered method : calculateAverage");
+                double sum = calculateSum(values);
+                logger.debug("Calculating average");
+                double avg = sum / values.length;
+                logger.debug("Exiting method : calculateAverage");
+                return avg;
+            }
+
+            public static double calculateSum(double[] values) {
+                // logging to debug the flow of this method by marking the entry and exit point
+                logger.debug("Entered method : calculateSum");
+                double sum = 0.0;
+                for (double value : values) {
+                    sum += value;
+                }
+                logger.debug("Exiting method : calculateSum");
+                return sum;
+            }
+
+        ```
+
+    (3) INFO:
+
+        Used for informational messages that are relevant to the normal operation of the application. Examples include
+        startup and shutdown messages, configuration changes, and other important events.
+
+        Use Case : Info-level logs are used for informational messages that are relevant to the normal operation of an
+        application. They can be used to record important events, such as when the application starts or stops,
+        successful login attempts, or significant configuration changes.
+
+        Scenario :  Let say a code make connection to DB and execute a query. We can use INFO level to log message
+        providing info events like connection established, query executed etc
+
+        ```
+            public class MyApp {
+                public static void main(String[] args) {
+                    Connection connection = DriverManager.getConnection("db_url", "username", "password");
+                    // log message providing info that connection to DB has been established
+                    logger.info("Connection established");
+                    Statement statement = connection.createStatement();
+                    connection.executeQuery("SQL Query");
+                    // log message giving info that query executed
+                    logger.info("Query executed successfully");
+                }
+            }
+        ```
+
+    (4) WARN (Warning):
+
+        Used for warning messages that indicate potential issues or situations that should be investigated but do not
+        necessarily disrupt the application's operation.
+
+        Use Case : Warning-level logs are used to highlight potential issues or anomalies that are not critical but
+        should be investigated. For example, if an application encounters a situation that may lead to a problem in the
+        future, it can log a warning.
+
+        Scenario : Let say you code is keeping track of number failed login attempts and once the login attempt
+        pass a threshold, you consider it as a malicious activity and could be threat to your application. In such case
+        one can use WARN level logging which will log message as a warning to the system
+
+        ```
+            public class MyApp {
+                public static void main(String[] args) {
+                    // Simulate an unusual event (e.g., a spike in login attempts)
+                    int loginAttempts = 1000;
+                    if (loginAttempts > 500) {
+                        // Log a warning for the unusual event
+                        logger.warn("Unusual login activity detected: {} login attempts", loginAttempts);
+                        // Take appropriate action (e.g., alert the security team)
+                    }
+                    // Continue with normal application flow
+                }
+            }
+        ```
+
+
+    (5) ERROR:
+
+        Used to log error messages that indicate a problem or failure that has occurred during the application's execution.
+        These messages represent significant issues but do not necessarily halt the application.
+
+        Use Case : Error-level logs are used to indicate that a significant problem or error has occurred but the
+        application can still continue running. These logs are typically used to capture exceptions and errors that need
+        attention but do not necessarily halt the application.
+
+        Scenario :  Let say code is making database connection. To log message on connection failure or to log on the
+        exception, we can use ERROR level logger
+
+        ```
+            public class MyApp {
+                public static void main(String[] args) {
+                    try {
+                        // Simulate a critical error (e.g., database connection failure)
+                        if (!connectToDatabase()) {
+                            // Log an error message for the critical error
+                            logger.error("Database connection failed. Unable to continue.");
+                            // Take appropriate action (e.g., handle the error, terminate the application)
+                        }
+                    } catch (Exception e) {
+                        // Log an error for an unhandled exception
+                        logger.error("An unexpected error occurred: {}", e.getMessage());
+                    }
+
+                    // Continue with normal application flow if possible
+                }
+
+                private static boolean connectToDatabase() {
+                    // Simulate a database connection failure
+                    return false;
+                }
+            }
+        ```
+
+    (6) FATAL (or CRITICAL):
+
+        The most severe log level. Used to log critical errors or failures that are fatal to the application and result
+        in termination or immediate shutdown.
+
+        Use Case: Fatal-level logs are reserved for the most severe issues that result in the application's inability to
+        continue running. These logs are used to record critical failures that require immediate attention, such as
+        unrecoverable errors that lead to application termination.
+
+        scenario : If code might end up in method deadlock which will lead to StackoverflowError, this would terminate
+        the application. To log message in such case to get insight of what happened which terminate the application,
+        we can use FATAL level logger
+
+        ```
+            public class MyApp {
+                public static void main(String[] args) {
+                    try{
+                        // code that will raise StackOverflowError
+                    }
+                    catch(StackOverflowError e) {
+                        // logging error as fatal as this might terminate the application
+                        logger.fatal("An unexpected error occurred: {}", e.getMessage());
+                    }
+                }
+            }
+        ```
+
+________________________________________________________________________________________________________________________
+
 *   How to get started with Log4j2 ?
 
 >>  Here's a step-by-step guide on how to get started with Log4j2:

@@ -24,6 +24,8 @@
         <!--
             Define the root logger
             Set the log level for the root logger to INFO
+            Since log level is set to INFO, logger will log only INFO, WARN, ERROR and FATAL level messages ignoring
+            TRACE AND DEBUG level messages
         -->
         <Root level="info">
 
