@@ -1,0 +1,87 @@
+*   What is Log4j2 logger Hierarchy ?
+
+>>  The Log4j2 logger hierarchy is a fundamental concept within the Log4j2 logging framework, and it refers to the
+    hierarchical structure of loggers. Log4j2 allows you to organize loggers into a tree-like structure, where each
+    logger inherits properties and behaviors from its parent logger in the hierarchy. Understanding the logger hierarchy
+    is crucial for effective logging configuration and management. Here's how it works:
+
+    (1) Root Logger:
+
+        At the top of the hierarchy is the root logger. All other loggers are descendants of the root logger. The root
+        logger is a default logger provided by Log4j2, and it captures all log events that aren't explicitly handled by
+        more specific loggers.
+
+    (2) Child Loggers:
+
+        Below the root logger, you can create child loggers. Child loggers inherit the configuration settings (e.g.,
+        log level, appenders) from their parent logger. Each child logger can have a unique name, which allows you to
+        identify and configure logging behavior for specific parts of your application.
+
+    (3) Logger Names:
+
+        Logger names in Log4j2 are typically hierarchical, following a package-like naming convention, such as
+        "com.example.app.componentA." The hierarchy is established based on the structure of the logger names.
+        For example, in the logger name "com.example.app.componentA," "com.example.app" is the parent logger of "componentA."
+
+    (4) Logging Levels:
+
+        Each logger in the hierarchy can be configured with a specific logging level (e.g., TRACE, DEBUG, INFO, WARN,
+        ERROR, FATAL). Log events with a level equal to or more severe than the configured level are captured by the logger.
+
+    (5) Appenders:
+
+        Loggers can be associated with one or more appenders. Appenders determine where log events are written (e.g.,
+        to a file, console, database). A logger can reference multiple appenders, allowing you to direct log events to
+        different destinations.
+
+    (6) Additivity:
+
+        The additivity property of a logger specifies whether log events should be passed up to parent loggers. If
+        additivity is set to true, log events will be propagated up the logger hierarchy. If set to false, they won't
+        propagate and will only be captured by the specific logger.
+
+    The logger hierarchy provides a structured and organized way to manage and configure logging in an application. It
+    allows you to control the granularity of logging, making it easier to isolate and configure log output for different
+    components or modules. It's particularly useful in larger applications where you need to manage and analyze log data
+    efficiently.
+________________________________________________________________________________________________________________________
+
+*   Why one should go for logger hierarchy when logging can be done with single root logger ?
+
+>>  We can log messages using just the root logger, and the output might appear similar to using multiple loggers, but
+    there are important reasons to create and use multiple loggers within your application, even if you can log
+    everything using the root logger. Here are some key reasons:
+
+    (1) Fine-Grained Control:
+
+        By using multiple loggers, you have fine-grained control over the log levels and destinations for different
+        parts of your application. This allows you to tailor your logging to the specific needs of various components or
+        modules. For example, you can configure one component to log at the DEBUG level for detailed debugging
+        information and another component to log at the INFO level for general information.
+
+    (2) Reduced Noise:
+
+        With multiple loggers, you can filter and control the volume of log messages more effectively. Logging at a lower
+        log level (e.g., DEBUG) may produce more detailed output, while logging at a higher level (e.g., INFO) is more
+        concise. Using separate loggers for different components allows you to adjust the log level according to the
+        importance of the messages, reducing log noise.
+
+    (3) Isolation:
+
+        Loggers provide isolation for different components. If you encounter an issue with one component, you can
+        increase the log level for that component without affecting the logging behavior of the rest of the application.
+        This makes it easier to troubleshoot specific issues without overwhelming the logs with irrelevant information.
+
+    (4) Security and Access Control:
+
+        In some cases, you may want to restrict access to certain loggers or limit the log output for security or
+        compliance reasons. By using separate loggers, you can apply different access control and configuration settings
+        to different components.
+
+    (5) Organization:
+
+        Using multiple loggers can help organize your logs. Each logger can correspond to a specific component or module,
+        which aligns with the structure of your application. This makes it easier to locate and analyze log messages and
+        their sources when diagnosing issues cause when log messages are generated by different components, the logger
+        name is often included in the log output. This makes it easy to identify the source of log messages.
+________________________________________________________________________________________________________________________

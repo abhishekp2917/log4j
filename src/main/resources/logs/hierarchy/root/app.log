@@ -1,0 +1,10 @@
+00:25:13.131 [main] INFO  org.example.Main4 - Application started
+00:25:13.153 [main] INFO  org.example.Main4 - Withdrawing amount 20000 from account Number : 102
+00:25:13.155 [main] TRACE org.example.Main4 - Current balance in account - 102 : 100000.0
+00:25:13.158 [main] TRACE org.example.Main4 - Balance after transaction in account - 102 : 80000.0
+00:25:13.158 [main] INFO  org.example.Main4 - Withdrawing amount 90000 from account Number : 102
+00:25:13.158 [main] TRACE org.example.Main4 - Current balance in account - 102 : 80000.0
+00:25:13.159 [main] TRACE org.example.Main4 - Balance after transaction in account - 102 : 80000.0
+00:25:13.159 [main] INFO  org.example.Main4 - Withdrawing amount 90000 from account Number : 102
+00:25:13.159 [main] TRACE org.example.Main4 - Current balance in account - 102 : 80000.0
+00:25:13.160 [main] TRACE org.example.Main4 - Balance after transaction in account - 102 : 80000.0

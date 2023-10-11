@@ -1,0 +1,25 @@
+00:25:13.135 [main] INFO  org.example.Account - Account created successfully
+00:25:13.155 [main] DEBUG org.example.Account.withdrawAmount - Entered into WithdrawAmount method
+00:25:13.155 [main] TRACE org.example.Account.withdrawAmount - Parameters : Amount : 20000, pinNumber : 1234
+00:25:13.155 [main] DEBUG org.example.Account.authenticate - Entered into authenticate method
+00:25:13.156 [main] TRACE org.example.Account.authenticate - Parameters : pinNumber : 1234
+00:25:13.156 [main] TRACE org.example.Account.authenticate - pinNumber : 1234
+00:25:13.156 [main] INFO  org.example.Account.authenticate - Authenticated successfully
+00:25:13.156 [main] TRACE org.example.Account.withdrawAmount - Current balance : 100000.0
+00:25:13.156 [main] TRACE org.example.Account.withdrawAmount - Balance left after transaction : 80000.0
+00:25:13.158 [main] INFO  org.example.Account.withdrawAmount - Amount 20000 withdrawn successfully
+00:25:13.158 [main] DEBUG org.example.Account.withdrawAmount - Entered into WithdrawAmount method
+00:25:13.158 [main] TRACE org.example.Account.withdrawAmount - Parameters : Amount : 90000, pinNumber : 1243
+00:25:13.158 [main] DEBUG org.example.Account.authenticate - Entered into authenticate method
+00:25:13.158 [main] TRACE org.example.Account.authenticate - Parameters : pinNumber : 1243
+00:25:13.159 [main] TRACE org.example.Account.authenticate - pinNumber : 1234
+00:25:13.159 [main] ERROR org.example.Account.authenticate - Authentication failed
+00:25:13.159 [main] ERROR org.example.Account.withdrawAmount - Invalid pin number entered
+00:25:13.159 [main] DEBUG org.example.Account.withdrawAmount - Entered into WithdrawAmount method
+00:25:13.159 [main] TRACE org.example.Account.withdrawAmount - Parameters : Amount : 90000, pinNumber : 1234
+00:25:13.159 [main] DEBUG org.example.Account.authenticate - Entered into authenticate method
+00:25:13.159 [main] TRACE org.example.Account.authenticate - Parameters : pinNumber : 1234
+00:25:13.160 [main] TRACE org.example.Account.authenticate - pinNumber : 1234
+00:25:13.160 [main] INFO  org.example.Account.authenticate - Authenticated successfully
+00:25:13.160 [main] TRACE org.example.Account.withdrawAmount - Current balance : 80000.0
+00:25:13.160 [main] ERROR org.example.Account.withdrawAmount - Insufficient balance
